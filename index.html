@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Download Dholayan Communication</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #45188F;
+            color: #F1E8FF;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            text-align: center;
+        }
+        .container {
+            background: #05155E;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            max-width: 600px;
+            width: 90%;
+            position: relative;
+        }
+        h1 {
+            color: #F1E8FF;
+            font-size: 2em;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+        p {
+            color: #F1E8FF;
+            font-size: 1.1em;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+        .button-group {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap; /* Allows buttons to wrap on small screens */
+        }
+        .download-button, .view-button {
+            display: inline-block;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 1.1em;
+            font-weight: bold;
+            transition: background-color 0.3s ease, transform 0.2s;
+            cursor: pointer;
+        }
+        .download-button {
+            background-color: #1F0029;
+            color: #F1E8FF;
+        }
+        .download-button:hover {
+            background-color: #310042;
+            transform: translateY(-2px);
+        }
+        .view-button {
+            background-color: #F1E8FF;
+            color: #05155E;
+        }
+        .view-button:hover {
+            background-color: #dce1e3;
+            transform: translateY(-2px);
+        }
+        #platform-name {
+            color: #F1E8FF;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1 id="main-header"></h1>
+        <p>Get instant access to our web on your device. Your device is detected as <span id="platform-name"></span>.</p>
+
+        <div class="button-group" id="button-container">
+            <!-- Buttons will be added here by JavaScript -->
+        </div>
+    </div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const mainHeader = document.getElementById('main-header');
+        const buttonContainer = document.getElementById('button-container');
+        const platformNameSpan = document.getElementById('platform-name');
+        const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+
+        let platform = "unknown";
+        
+        // --- YOU MUST REPLACE THESE URLS WITH YOUR OWN ---
+        const androidUrl = "https://github.com/dholayancommunication/DHOLAYAN-COMMUNICATION-OPENING-HOURS/releases/download/v1.0/Shop.Opening.Hours.apk";
+        const webUrl = "https://dholayancommunication.github.io/DHOLAYAN-COMMUNICATION-OPENING-HOURS/";
+        const iOSUrl = "YOUR_IOS_APP_STORE_URL";
+        const windowsUrl = "YOUR_WINDOWS_EXE_URL";
+
+        // Function to create and append buttons
+        const createButton = (text, href, className) => {
+            const a = document.createElement('a');
+            a.href = href;
+            a.textContent = text;
+            a.classList.add(className);
+            buttonContainer.appendChild(a);
+        };
+
+        if (/android/i.test(userAgent)) {
+            platform = "Android";
+            mainHeader.textContent = "View Our Shop's Live Opening Hours";
+            createButton("View Web Version", webUrl, "view-button");
+        } else if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+            platform = "iOS";
+            mainHeader.textContent = "View Our Shop's Live Opening Hours";
+            createButton("View Web Version", webUrl, "view-button");
+        } else if (/windows/i.test(userAgent)) {
+            platform = "Windows";
+            mainHeader.textContent = "View Our Shop's Live Opening Hours";
+            createButton("View Web Version", webUrl, "view-button");
+        } else {
+            platform = "Other";
+            mainHeader.textContent = "View Our Shop's Live Opening Hours";
+            createButton("View Web Version", webUrl, "view-button");
+        }
+        
+        platformNameSpan.innerHTML = '<strong>' + platform + '</strong>';
+        
+    });
+</script>
+
+</body>
+</html>
