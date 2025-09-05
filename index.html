@@ -111,7 +111,8 @@
 
         if (/android/i.test(userAgent)) {
             platform = "Android";
-            mainHeader.textContent = "View Our Shop's Live Opening Hours";
+            mainHeader.textContent = "DOWNLOAD OUR SHOP'S OPENING HOURS APP";
+            createButton("Download for Android", androidUrl, "download-button");
             createButton("View Web Version", webUrl, "view-button");
         } else if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
             platform = "iOS";
